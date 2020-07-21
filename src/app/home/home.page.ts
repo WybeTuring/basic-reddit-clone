@@ -52,7 +52,11 @@ export class HomePage implements OnInit {
   }
 
   showComments(post): void{
-
+    Browser.open({
+      toolbarColor: '#fff',
+      url: 'http://reddit.com' + post.data.permalink,
+      windowName: '_system'
+    });
   }
 
   openSettings(): void {
@@ -60,10 +64,21 @@ export class HomePage implements OnInit {
   }
 
   playVideo(e:any, post:any): void{
+    console.log(e);
 
+    let video = e.target;
+
+    if(video.paused){
+      video.play();
+      video.addEventListener("playing", e => {
+        console.log("playing video");
+      });
+    }else{
+      video.pause();
+    }
   }
 
   loadMore(): void{
-
+    this.redditService.nextPage();
   }
 }

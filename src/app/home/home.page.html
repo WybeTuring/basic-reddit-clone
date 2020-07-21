@@ -21,12 +21,12 @@
 
 <ion-content [fullscreen]="true">
   <ion-list lines = "none">
-    <div>
+    <div (click)="playVideo($event, post)" *ngFor="let post of redditService.posts">
       <ion-item>
-        GIF GOES HERE
+        <video loop [src]="post.data.url" [poster]="post.data.snapshot"></video>
       </ion-item>
-      <ion-list-header>
-        <ion-label>TITLE GOES HERE</ion-label>
+      <ion-list-header (click)="showComments(post)" style="text-align: left;">
+        <ion-label>{{ post.data.title }}</ion-label>
       </ion-list-header>
     </div>
 
