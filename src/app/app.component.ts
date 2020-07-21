@@ -17,16 +17,24 @@ export class AppComponent {
 
     SplashScreen.hide().catch(err => {
       console.warn(err);
-    })
+    });
 
     StatusBar.hide().catch(err => {
       console.warn(err);
-    })
+    });
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {  
+
+      SplashScreen.hide().catch(err => {
+        console.warn(err);
+      });
+  
+      StatusBar.hide().catch(err => {
+        console.warn(err);
+      });
       
     });
   }
