@@ -8,13 +8,17 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
+
+  // The settings page will be displayed as a modal in the home page so the settings page does not really need a route.
+  /*
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
+  */
 ];
 
 @NgModule({
