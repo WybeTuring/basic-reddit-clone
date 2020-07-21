@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from "@ionic/angular";
+import { RedditService } from "../services/reddit.service";
+import { DataService } from "../services/data.service";
 
 @Component({
   selector: 'app-settings',
@@ -7,8 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public redditService: RedditService,
+    private dataService: DataService,
+    private modalCtrl: ModalController
+  ) { }
 
+  save(): void {
+    this.dataService.save({
+      perPage: this.redditService.settings.perPage,
+      sort: this.redditService.settings.sort,
+      subreddit: this.redditService.settings.subreddit
+    });
+
+    this.close();
+  }
+
+  close(): void{
+    this.modalCtrl.dismiss();
+  }
   ngOnInit() {
   }
 

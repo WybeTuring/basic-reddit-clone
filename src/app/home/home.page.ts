@@ -60,7 +60,16 @@ export class HomePage implements OnInit {
   }
 
   openSettings(): void {
-
+    this.modalCtrl
+    .create({
+      component:SettingsPage
+    })
+    .then(modal => {
+      modal.onDidDismiss().then(() => {
+        this.redditService.resetPosts();
+      });
+      modal.present();
+    });
   }
 
   playVideo(e:any, post:any): void{
